@@ -7,16 +7,9 @@
     </ion-header>
     
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Blank</ion-title>
-        </ion-toolbar>
-      </ion-header>
-    
-      <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-      </div>
+      <ion-button :href="authWindow">
+        Create new Collection
+      </ion-button>
     </ion-content>
   </ion-page>
 </template>
@@ -24,6 +17,11 @@
 <script lang="ts">
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import { defineComponent } from 'vue';
+import Instagram from '../service/instagram'
+
+export const APP_ID = 680905919463949;
+export const APP_SECRET = '3cb961f8311a4e60e26615a05fdb760d';
+export const REDIRECT_URL = 'https://localhost:8080/auth/';
 
 export default defineComponent({
   name: 'Home',
@@ -33,7 +31,16 @@ export default defineComponent({
     IonPage,
     IonTitle,
     IonToolbar
+  },
+  data(){
+    return {
+      authWindow: `https://api.instagram.com/oauth/authorize?client_id=${APP_ID}&redirect_uri=${REDIRECT_URL}&scope=user_profile,user_media&response_type=code`
+    }
+  },
+  methods:{
   }
+  
+
 });
 </script>
 
